@@ -21,11 +21,11 @@ n dimensionality
 
 using Pkg
 # Switch to the desired Julia environment
-Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
+#Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
 
 
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
+include("../../src/util.jl") # ZZ's code
+include("../../src/util2.jl")
 
 fig4_dir = joinpath(FIGURE_ROOT, "fig4_and_supp")
 mkpath(fig4_dir)
@@ -97,7 +97,7 @@ for d = [1,2,3]
         C = reconstruct_covariance(points, p, f_r; subsample = false)
 
 
-        ipanel+=1
+        global ipanel+=1
         ax = fig.add_axes([x00[μ_id], y00[d], xs,ys])
         subsampling_rank_subplot(C,ax)
 

@@ -1,12 +1,12 @@
 using Pkg
 # Switch to the desired Julia environment
-Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
+#Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
 
 
 
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/PR_ratio.jl")
+include("../../src/util.jl") # ZZ's code
+include("../../src/util2.jl")
+include("../../src/PR_ratio.jl")
 import .new_load_data as nld
 import .new_analyses as na
 

@@ -1,14 +1,21 @@
 using Pkg
 # Switch to the desired Julia environment
-Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
+#Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
 
 
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/subsampling_functions.jl") 
+#include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
+#include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
+#include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/subsampling_functions.jl") 
+
+include("../../src/util.jl")
+include("../../src/util2.jl")
+include("../../src/subsampling_functions.jl") 
+
+#FIGURE_ROOT =  "/home/wenlab-user/wangzezhen/ERM-scale/figures"
 
 fig_dir = joinpath(FIGURE_ROOT, "fig3_and_supp")
 mkpath(fig_dir)
+
 
 N = 2^10 #number of neurons
 d = 2 #dimensionality
@@ -19,6 +26,15 @@ L = 10 #(N/ρ)^(1/d) #box size
 μ = 0.5
 β = 0
 ρ = N/L^d
+
+different_neural_variability = true
+if different_neural_variability
+    σ² = vec(rand(LogNormal(0,0.5),N,1))
+    σ² = σ²/mean(σ²)
+else
+    σ² = ones(N,1)
+end
+
 p = ERMParameter(;N = N, L = L, ρ = ρ, n = d, ϵ = ϵ, μ = μ, ξ = ξ, β = β, σ̄² = mean(σ²), σ̄⁴ = mean(σ².^2))
 points = rand(Uniform(-L/2,L/2),N,d) #points are uniformly distributed in a region
 D = pairwise(Euclidean(), points, dims=1) 
@@ -88,3 +104,4 @@ ax2.legend(borderpad=0.5,handlelength=0.8,frameon=false,fontsize=8,loc="lower le
 
 fig.savefig(joinpath(fig_dir, "fig3CD.pdf"), bbox_inches = "tight")
 
+#fig.savefig(joinpath("/home/wenlab-user/wangzezhen/ERM-scale/fig_plot/fig3_and_supp", "fig3CD.pdf"), bbox_inches = "tight")

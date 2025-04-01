@@ -1,11 +1,13 @@
 
 using Pkg
 # Switch to the desired Julia environment
-Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
+#Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
 
 
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
+include("../../src/util.jl") # ZZ's code
+include("../../src/util2.jl")
+
+FIGURE_ROOT =  "/home/wenlab-user/wangzezhen/ERM-scale/figures"
 
 fig4_dir = joinpath(FIGURE_ROOT, "fig4_and_supp")
 mkpath(fig4_dir)
@@ -13,7 +15,7 @@ using Colors
 
 function CI_data_plot(ax)
     
-    dataroot = "C:\\Fish-Brain-Behavior-Analysis\\Fish-Brain-Behavior-Analysis\\results\\CI_rank\\normalization4"
+    dataroot = "/home/wenlab-user/wangzezhen/ERM-scale/results/CI_rank/normalization4"
     ci_cor201106 = matread(joinpath(dataroot, "cor_CI_normlization.mat"))["ci_cor201106"]
     ci_cor201116 = matread(joinpath(dataroot, "cor_CI_normlization.mat"))["ci_cor201116"]
     ci_cor201117 = matread(joinpath(dataroot, "cor_CI_normlization.mat"))["ci_cor201117"]
@@ -103,7 +105,7 @@ end
 
 
 isubject = "201106"
-data_dir = "C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/"
+data_dir = "/home/data2/wangzezhen/fishdata" #"C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/"
 FR = matread(joinpath(data_dir, isubject, "spike_OASIS.mat"))["sMatrix_total"]
 Judge2 = matread(joinpath(data_dir, isubject, "Judge2.mat"))["Judge2"]
 y_conv_range = matread(joinpath(data_dir, isubject, "y_conv_range.mat"))["y_conv_range"]

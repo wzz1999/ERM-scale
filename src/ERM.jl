@@ -1,6 +1,7 @@
 include("util.jl")
 #include("variational.jl")
-ENV["JULIA_PROJECT"] = "/home/wenlab-user/wangzezhen/FISHRNN_TEST"
+#ENV["JULIA_PROJECT"] = "/home/wenlab-user/wangzezhen/FISHRNN_TEST"
+#ENV["JULIA_PROJECT"] = ""
 
 pyplot()
 N = 2^10#number of neurons

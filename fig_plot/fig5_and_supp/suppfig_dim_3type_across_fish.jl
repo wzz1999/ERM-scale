@@ -1,12 +1,12 @@
 using Pkg
 # Switch to the desired Julia environment
-Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
+#Pkg.activate("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/")
 
 
 
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/PR_ratio.jl")
+include("../../src/util.jl") # ZZ's code
+include("../../src/util2.jl")
+include("../../src/PR_ratio.jl")
 import .new_load_data as nld
 import .new_analyses as na
 
@@ -148,14 +148,14 @@ end
 RCCA_knee = matread(joinpath(fig_dir, "RCCA_knee.mat"))
 
 for subject_i = 1:3
-    ipanel += 1
+    global ipanel += 1
     ax = fig.add_axes([x00[ipanel], y00[1], xs,ys*1.1])
     key = "ifish"*data_dict[subject_i]
     plot_dim_3type_across_fish(ax, data_dict, subject_i, ipanel; RCCA = RCCA_knee[key])
 end
 
 for subject_i = 4:6
-    ipanel += 1
+    global ipanel += 1
     global ax = fig.add_axes([x00[ipanel-3], y00[2], xs,ys*1.1])
     key = "ifish"*data_dict[subject_i]
     plot_dim_3type_across_fish(ax, data_dict, subject_i, ipanel; RCCA = RCCA_knee[key])

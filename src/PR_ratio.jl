@@ -5,6 +5,7 @@ using PyCall
 import PyPlot as plt
 
 
+
 function subsampling_PR(C,ax1, y_axis, x_axis=nothing; flag_face_color=true, clus_type="rand", flag_normalized=false)
     # plot the covariance matrix dimensionality
     # raw dim without normalized by N
@@ -1461,12 +1462,12 @@ end
 ########################################################################################
 module new_load_data
 
-const PR_ROOT = "C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/PR/Corr_mat"
 using MAT
 using Parameters
 import PyPlot as plt
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
+include("../src/util.jl") # ZZ's code
+include("../src/util2.jl")
+const PR_ROOT = ERM_ROOT * "/results/PR/Corr_mat"
 
 stringer_neuropixels_dict = Dict(
     1 => "Krebs",
@@ -1475,7 +1476,7 @@ stringer_neuropixels_dict = Dict(
 )
 
 function load_stringer_neuropixels_data(isubject, seed_i=1, C_type = "cov", flag_rand_wb = true)
-    data_dir = "C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/firing_rate/"
+    data_dir = ERM_ROOT * "/results/firing_rate/"
     @unpack FR, Wh = matread(joinpath(data_dir, isubject * "_10Hz_FR.mat"));
     FR = FR[:,1:7200]
 
@@ -1528,7 +1529,7 @@ fish_dict = Dict(
 )
 
 function load_FR_raw(ifish)
-    fishdata_dir = "C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/"
+    fishdata_dir = "/home/data2/wangzezhen/fishdata/"
     FR = matread(joinpath(fishdata_dir, ifish, "spike_OASIS.mat"))["sMatrix_total"]
     Judge = vec(matread(joinpath(fishdata_dir, ifish, "Judge.mat"))["Judge"])
     if eltype(Judge)==Bool
@@ -1554,7 +1555,7 @@ end
 
 function load_XYZ_raw(ifish)
     n = 2
-    matroot = "C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/mds_CCA"
+    matroot = ERM_ROOT*"/results/mds_CCA"
     # ROI_pjec: the vector plotted in anatomical space
     # X_pjec: the vector plotted in functional space
     @unpack X, ROI_pjec, X_pjec, ROIxyz, correlations_CCA = matread(joinpath(matroot,"$ifish","$n","X_CCA.mat"))
@@ -1676,7 +1677,7 @@ function load_fish_C2(ifish, N_end=1024)
     plt.scatter(ROIxyz_raw[:,1], ROIxyz_raw[:,2], s=3, color="k", label="all neurons")
     plt.scatter(ROIxyz_raw[i_sort,1], ROIxyz_raw[i_sort,2], s=1, color="r", label="selected neurons")
     plt.title("check whole set neuron anatomical distribution")
-    plt.savefig("C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/PR/Corr_mat/light_field/"*ifish*"_ROI_xyz.png")
+    plt.savefig(ERM_ROOT * "/results/PR/Corr_mat/light_field/"*ifish*"_ROI_xyz.png")
     plt.close()
 
     return C # correlation matrix neuron order is already sorted along anatomical axis
@@ -1748,7 +1749,7 @@ function load_2p_C(isubject)
         push!(C_ls, C)
         push!(XYZ_ls, XYZ_selected)
 
-        fig_path = joinpath("C:/Fish-Brain-Behavior-Analysis/Fish-Brain-Behavior-Analysis/results/PR/Corr_mat/2p", "$(isubject)_$(i)_ROI_xyz.png")
+        fig_path = joinpath("../results/PR/Corr_mat/2p", "$(isubject)_$(i)_ROI_xyz.png")
         # Check if the figure file already exists
         if !isfile(fig_path)
             plt.figure()
@@ -1797,8 +1798,8 @@ module new_analyses
 
 using MAT
 using Parameters
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util.jl") # ZZ's code
-include("C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/src/util2.jl")
+include("../src/util.jl") # ZZ's code
+include("../src/util2.jl")
 
 
 """

@@ -2,8 +2,8 @@ using DataFrames
 import GLM as glm
 import PyPlot as plt
 
-const ERM_ROOT = "C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper"
-const FIGURE_ROOT = "C:/Users/Public/code/Fish-Brain-Behavior-Analysis/code/data_analysis_Weihao/ERM_paper/figure_script"
+const ERM_ROOT = "/home/wenlab-user/wangzezhen/ERM-scale"
+const FIGURE_ROOT = "/home/wenlab-user/wangzezhen/ERM-scale/fig_plot"
 
 #################################
 ##-------different f(x)--------##
