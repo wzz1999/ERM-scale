@@ -1,0 +1,3 @@
+RSap vs ASap p_values: 0.0010210803106518117
+RSap vs FSap p_values: 0.0003514612352263469
+ASap vs FSap p_values: 0.0013692399611845026
