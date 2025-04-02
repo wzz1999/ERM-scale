@@ -8,10 +8,10 @@ https://doi.org/10.7554/eLife.100666.2
 ## Project Structure
 
 -   `src/`: Contains the core Julia source code, including utility functions, subsampling methods, MDS implementations, and potentially the main ERM logic.
-    -   `ERM.jl`: Likely contains the central ERM implementation.
+    -   `ERM.jl`: The central ERM implementation.
     -   `mds.jl`, `mds_cca_batch.jl`: Multidimensional scaling functions.
     -   `subsampling_functions.jl`: Functions related to data subsampling.
-    -   `t_pdf_FT.jl`: Possibly related to t-distribution probability density functions or Fourier transforms.
+    -   `t_pdf_FT.jl`: t-distribution probability density functions or Fourier transforms.
     -   `util.jl`, `util2.jl`: Utility functions.
 -   `fig_plot/`: Contains scripts to generate figures. Subdirectories correspond to specific figures (Fig 2, Fig 3, Fig 4, Fig 5) and their supplementary materials. Scripts for Figure 6 and kernel regression are also present.
 -   `load_data/`: Contains scripts for loading data, specifically `load_fish_data2.jl`.
